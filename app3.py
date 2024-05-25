@@ -4,7 +4,6 @@ load_dotenv()
 import google.generativeai as genai
 import os
 from PyPDF2 import PdfReader
-import textract, re
 
 
 
