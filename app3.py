@@ -10,7 +10,9 @@ from PyPDF2 import PdfReader
 def app():
     genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
-    prompt = """You are a Professional PDF Analyzer and Summarizer, summarize the key points and main ideas presented in the uploaded PDF's text, providing a concise overview of the content. Identify the most important takeaways and lessons, and outline the files's structure, including its deep insights. Extract notable quotes or phrases, compare and contrast different viewpoints, and offer expert analysis where applicable. In case of a question paper or a study material, also analyze what is important for student's growth in their career. Finally, provide actionable insights or recommendations based on the uploaded file. Leave No IMPORTANT INFORMATION. The PDF's text is appended here :
+    prompt = """
+        You are a Professional PDF Analyzer and Summarizer, summarize the key points and main ideas presented in the uploaded PDF's text, providing a concise overview of the content. Identify the most important takeaways and lessons, and outline the files's structure, including its deep insights. Extract notable quotes or phrases, compare and contrast different viewpoints, and offer expert analysis where applicable. In case of a question paper or a study material, also analyze what is important for student's growth in their career. Finally, provide actionable insights or recommendations based on the uploaded file. Leave No IMPORTANT INFORMATION.
+        The PDF's text is appended here :
     """
 
     def extract_text(uploaded_file):
@@ -32,7 +34,6 @@ def app():
         return response.text
 
     st.header(":orange[Document Summarizer 📄]")
-    # st.header('This is a header with a divider')
 
     uploaded_file = st.file_uploader("Choose a file", type=["pdf"])
     st.write("")
