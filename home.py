@@ -47,7 +47,5 @@ This project aims to develop a system that leverages Gemini to generate summarie
 
 In conclusion, Gemini represents a groundbreaking solution for data summarization across various media formats. Its advanced capabilities, customizable features, and scalability make it a valuable tool for individuals, businesses, and researchers seeking to unlock the full potential of their data. By simplifying the process of information consumption and analysis, Gemini empowers users to extract actionable insights and make informed decisions in today's data-driven world.
 
-                
-    """,
-        unsafe_allow_html=True,
-    )
+"""
+)
