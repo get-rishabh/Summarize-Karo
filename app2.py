@@ -54,7 +54,7 @@ def app():
     if st.button("Summarise Now", key=2):
         try:
             summary = generate_gemini_content(prompt, uploaded_file)
-            st.markdown("## Detailed Notes :")
+            st.markdown("## Detailed Summary :")
             st.write(summary)
         except Exception as e:
             st.error("Some Error Occured, Try Again !!!")
