@@ -48,7 +48,7 @@ def app():
     if uploaded_file is not None:
 
         st.write("File Uploaded Succesfully")
-        st.image(uploaded_file, use_column_width=True)
+        st.image(uploaded_file, use_container_width=True)
         st.write("Click below button to Analyze and Summarize the file.")
 
     if st.button("Summarise Now", key=2):
