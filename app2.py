@@ -36,7 +36,7 @@ def app():
 
     def generate_gemini_content(prompt, uploaded_file):
         image = Image.open(io.BytesIO(uploaded_file.read()))
-        model = genai.GenerativeModel(model_name="gemini-1.5-pro")
+        model = genai.GenerativeModel(model_name="models/gemini-1.5-flash")
         response = model.generate_content([prompt, image])
         return response.text    
 
