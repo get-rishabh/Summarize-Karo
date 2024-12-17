@@ -36,7 +36,7 @@ def app():
             return transcript
 
     def generate_gemini_content(transcript_text, prompt):
-        model = genai.GenerativeModel("gemini-pro")
+        model = genai.GenerativeModel("models/gemini-1.5-flash")
         response = model.generate_content(prompt + transcript_text)
         return response.text
 
