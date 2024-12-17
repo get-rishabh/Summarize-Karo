@@ -66,7 +66,7 @@ def app():
                 if transcript_yt:
                     print("Got transc.")
                     summary = generate_gemini_content(transcript_yt, prompt)
-                    st.markdown("## Detailed Notes :")
+                    st.markdown("## Detailed Summary :")
                     st.write(summary)
             except Exception:
                 st.markdown("Unable to Summarize, Try Again !!!")
