@@ -47,7 +47,7 @@ def app():
             if st.button(" Get Detailed Notes ", key=3):
                 try:
                     summary = generate_gemini_content(prompt, text)
-                    st.markdown("## Detailed Notes :")
+                    st.markdown("## Detailed Summary :")
                     st.write(summary)
                 except Exception:
                     st.markdown("Some Error Occured, Try Again")
