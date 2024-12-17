@@ -29,7 +29,7 @@ def app():
             raise e
 
     def generate_gemini_content(prompt, pdf_text):
-        model = genai.GenerativeModel("gemini-1.5-pro")
+        model = genai.GenerativeModel("models/gemini-1.5-flash")
         response = model.generate_content(prompt + pdf_text)
         return response.text
 
