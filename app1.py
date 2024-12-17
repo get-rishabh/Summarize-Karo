@@ -54,7 +54,7 @@ def app():
             reg = re.search(r'(?<=v=)[^&]+', yt_link) #regex for extracting the video_id from the URL 
             video_id = reg.group(0)
             print(video_id)
-            st.image(f"https://img.youtube.com/vi/{video_id}/0.jpg", use_column_width=True)
+            st.image(f"https://img.youtube.com/vi/{video_id}/0.jpg", use_container_width=True)
         except IndexError as e:
             st.error("Only Long Format Videos are supported")
         # Universal YT Thumbnail :  https://img.youtube.com/vi/HFfXvfFe9F8/0.jpg
