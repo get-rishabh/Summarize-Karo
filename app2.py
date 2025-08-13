@@ -31,12 +31,19 @@ def app():
     
     Limit Speculation: If certain aspects of the image are unclear or ambiguous, briefly note them as possibilities without making definitive claims.
     
-    Leave No IMPORTANT INFORMATION. The Image is appended here :
+    Leave No IMPORTANT INFORMATION. Output should be in markdown format, following the format below:
+    # Image Summary
+    ## General Overview
+    ## Recognition of Famous Entities (if any)
+    ## Contextual Description
+    ## Details
+    ## Tone(if any)
+
     """
 
     def generate_gemini_content(prompt, uploaded_file):
         image = Image.open(io.BytesIO(uploaded_file.read()))
-        model = genai.GenerativeModel(model_name="models/gemini-1.5-flash")
+        model = genai.GenerativeModel(model_name="gemini-2.5-flash")
         response = model.generate_content([prompt, image])
         return response.text    
 
@@ -53,8 +60,40 @@ def app():
 
     if st.button("Summarise Now", key=2):
         try:
-            summary = generate_gemini_content(prompt, uploaded_file)
-            st.markdown("## Detailed Summary :")
-            st.write(summary)
+            # Progress bar for overall process
+            progress_bar = st.progress(0)
+            status_text = st.empty()
+            
+            # Step 1: Processing image
+            status_text.text("🔄 Processing image...")
+            progress_bar.progress(25)
+            
+            with st.spinner("Processing image..."):
+                # Reset file pointer to beginning
+                uploaded_file.seek(0)
+            
+            progress_bar.progress(50)
+            
+            # Step 2: Generating analysis
+            status_text.text("🤖 Generating AI analysis...")
+            progress_bar.progress(75)
+            
+            with st.spinner("Generating AI analysis with Gemini..."):
+                summary = generate_gemini_content(prompt, uploaded_file)
+            
+            if summary:
+                progress_bar.progress(100)
+                status_text.text("✅ Analysis generated successfully!")
+                
+                # Display the summary
+                st.markdown(summary)
+                
+                # Clear the progress indicators after a short delay
+                st.success("Analysis completed successfully!")
+            else:
+                progress_bar.progress(100)
+                status_text.text("❌ Failed to generate analysis")
+                st.markdown("Unable to Analyze, Try Again !!!")
+                
         except Exception as e:
-            st.error("Some Error Occured, Try Again !!!")
+            st.error(f"Some Error Occured, Try Again !!!, {e}")
