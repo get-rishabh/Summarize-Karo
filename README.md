@@ -2,6 +2,12 @@
 
 A multimodal data summarization application using Google's Gemini AI to summarize content from YouTube videos, images, and documents.
 
+## Youtube Summarizer Demo Video
+
+
+https://github.com/user-attachments/assets/6860406c-488d-4576-8144-2953651dc19e
+
+
 ## Features
 
 - **YouTube Video Summarizer**: Extract transcripts and generate comprehensive summaries
