@@ -11,7 +11,7 @@ def app():
     genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
     prompt = """
-    You are a professional PDF analyzer and summarizer. Summarize the key points and main ideas from the uploaded PDF, providing a clear overview. Highlight key takeaways, insights, and notable quotes or phrases. Compare viewpoints where applicable and offer expert analysis. For study materials or question papers, identify important content for student growth. Provide actionable recommendations based on the document’s content. Ensure no critical information is missed.
+    You are a professional PDF analyzer and summarizer. Summarize the key points and main ideas from the uploaded PDF, providing a clear overview. Highlight key takeaways, insights, and notable quotes or phrases. Compare viewpoints where applicable and offer expert analysis. For study materials or question papers, identify important content for student growth. Provide actionable recommendations based on the document's content. Ensure no critical information is missed.
     The PDF's text is appended here :
     """
 
@@ -26,10 +26,11 @@ def app():
             return text
 
         except Exception as e:
+            st.markdown("Error Extracting Content from PDF")
             raise e
 
     def generate_gemini_content(prompt, pdf_text):
-        model = genai.GenerativeModel("models/gemini-1.5-flash")
+        model = genai.GenerativeModel("gemini-2.5-flash")
         response = model.generate_content(prompt + pdf_text)
         return response.text
 
@@ -39,15 +40,59 @@ def app():
     st.write("")
 
     if uploaded_file is not None:
-        text = extract_text(uploaded_file)
-        if len(text) > 600000:
-            st.markdown("Number Of Words Exceeded, Try Again with less words (<600,000) !!!")
-        else:   
-            st.write("Click below button to Analyze and Summarize the file.")
-            if st.button(" Get Detailed Notes ", key=3):
-                try:
+        st.write("Click below button to Analyze and Summarize the file.")
+        if st.button(" Get Detailed Notes ", key=3):
+            try:
+                # Progress bar for overall process
+                progress_bar = st.progress(0)
+                status_text = st.empty()
+                
+                # Step 1: Parsing PDF document
+                status_text.text("📄 Parsing PDF document...")
+                progress_bar.progress(20)
+                
+                with st.spinner("Parsing PDF document..."):
+                    text = extract_text(uploaded_file)
+                
+                # Check word limit after parsing
+                if len(text) > 600000:
+                    progress_bar.progress(100)
+                    status_text.text("❌ Document too large")
+                    st.markdown("Number Of Words Exceeded, Try Again with less words (<600,000) !!!")
+                    return
+                
+                progress_bar.progress(40)
+                
+                # Step 2: Processing document content
+                status_text.text("🔄 Processing document content...")
+                progress_bar.progress(60)
+                
+                with st.spinner("Processing document content..."):
+                    # Additional processing if needed
+                    pass
+                
+                progress_bar.progress(80)
+                
+                # Step 3: Generating summary
+                status_text.text("🤖 Generating AI summary...")
+                
+                with st.spinner("Generating AI summary with Gemini..."):
                     summary = generate_gemini_content(prompt, text)
-                    st.markdown("## Detailed Summary :")
+                
+                if summary:
+                    progress_bar.progress(100)
+                    status_text.text("✅ Summary generated successfully!")
+                    
+                    # Display the summary
+                    st.markdown("## Detailed Notes :")
                     st.write(summary)
-                except Exception:
-                    st.markdown("Some Error Occured, Try Again")
+                    
+                    # Clear the progress indicators after a short delay
+                    st.success("Summary completed successfully!")
+                else:
+                    progress_bar.progress(100)
+                    status_text.text("❌ Failed to generate summary")
+                    st.markdown("Unable to Summarize, Try Again !!!")
+                    
+            except Exception as e:
+                st.error(f"Error Generating Content: {e}")
