@@ -7,4 +7,4 @@ pathlib==1.0.1
 PyPDF2==3.0.1
 Pillow==11.3.0
 assemblyai==0.16.0
-requests==2.31.0
+requests==2.32.4
