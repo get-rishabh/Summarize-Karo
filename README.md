@@ -10,8 +10,9 @@ https://github.com/user-attachments/assets/6860406c-488d-4576-8144-2953651dc19e
 
 https://github.com/user-attachments/assets/4e82aec9-5cb3-4d7e-a7d8-37b62c244e2c
 
+## Document Summarizer Demo Video
 
-
+https://github.com/user-attachments/assets/9a168251-1d03-4952-953b-e9bd0b527b2f
 
 ## Features
 
