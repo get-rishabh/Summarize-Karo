@@ -16,25 +16,11 @@ https://github.com/user-attachments/assets/6860406c-488d-4576-8144-2953651dc19e
 
 ## YouTube Transcript Extraction Solution
 
-### Problem
+### Problems on Cloud Deployment (Streamlit Cloud, Huggingface Spaces)
 When deploying to cloud platforms like Hugging Face, YouTube often detects automated tools like `yt-dlp` as bots and requires authentication, causing the error:
 ```
 ERROR: [youtube] video_id: Sign in to confirm you're not a bot. Use --cookies-from-browser or --cookies for the authentication.
 ```
-
-### Solution
-The application now uses a **multi-method fallback system**:
-
-1. **Primary Method**: `youtube-transcript-api` - Most reliable for cloud deployments
-2. **Fallback Method**: `yt-dlp` with enhanced options for better bot detection avoidance
-3. **Future Method**: YouTube Data API (requires API key setup)
-
-### Key Improvements
-
-- **Enhanced yt-dlp options**: Added user-agent, no-certificate-check, and Android client emulation
-- **Multiple fallback methods**: If one method fails, automatically tries the next
-- **Better error handling**: Provides helpful error messages and troubleshooting tips
-- **Cloud-optimized**: Designed to work reliably on Hugging Face and other cloud platforms
 
 ### Installation
 
@@ -53,21 +39,6 @@ streamlit run app.py
 3. Paste a YouTube URL
 4. Click "Summarise Now"
 
-### Testing
-
-To test the transcript extraction:
-```bash
-python test_transcript.py
-```
-
-### Troubleshooting
-
-If transcript extraction fails:
-
-1. **Check video availability**: Ensure the video is public and has subtitles enabled
-2. **Try different videos**: Some videos may have restricted access
-3. **Check network**: Ensure stable internet connection
-4. **Update dependencies**: Make sure all packages are up to date
 
 ### Environment Variables
 
