@@ -4,8 +4,13 @@ A multimodal data summarization application using Google's Gemini AI to summariz
 
 ## Youtube Summarizer Demo Video
 
-
 https://github.com/user-attachments/assets/6860406c-488d-4576-8144-2953651dc19e
+
+## Image Summarizer Demo Video
+
+https://github.com/user-attachments/assets/4e82aec9-5cb3-4d7e-a7d8-37b62c244e2c
+
+
 
 
 ## Features
@@ -14,7 +19,7 @@ https://github.com/user-attachments/assets/6860406c-488d-4576-8144-2953651dc19e
 - **Image Analyzer & Summarizer**: Analyze and describe images with AI
 - **Document Summarizer**: Process PDF documents and generate summaries
 
-## YouTube Transcript Extraction Solution
+## Cloud Deployement Issue
 
 ### Problems on Cloud Deployment (Streamlit Cloud, Huggingface Spaces)
 When deploying to cloud platforms like Hugging Face, YouTube often detects automated tools like `yt-dlp` as bots and requires authentication, causing the error:
